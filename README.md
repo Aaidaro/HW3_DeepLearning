@@ -4,7 +4,7 @@ This project implements the requested U-Net segmentation pipeline and the YOLOv8
 
 ## 1. Dataset placement
 
-Place your downloaded datasets like this:
+<!-- Place your downloaded datasets like this:
 
 ```text
 homework_code/
@@ -15,7 +15,7 @@ homework_code/
         │   └── masks/
         └── dataset2/
             └── images/
-```
+``` -->
 
 Dataset 2 masks are discovered using filenames containing `___fuse`, for example:
 
