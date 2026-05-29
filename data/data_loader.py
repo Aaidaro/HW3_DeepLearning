@@ -328,14 +328,14 @@ def build_dataloaders(cfg: dict, project_root: Optional[Path] = None) -> Tuple[D
         train_dataset,
         batch_size=int(cfg["training"].get("batch_size", 4)),
         shuffle=True,
-        num_workers=int(cfg["training"].get("num_workers", 0)),
+        num_workers=int(cfg["training"].get("num_workers", 2)),
         pin_memory=bool(cfg["training"].get("pin_memory", True)),
     )
     val_loader = DataLoader(
         val_dataset,
         batch_size=int(cfg["training"].get("batch_size", 4)),
         shuffle=False,
-        num_workers=int(cfg["training"].get("num_workers", 0)),
+        num_workers=int(cfg["training"].get("num_workers", 2)),
         pin_memory=bool(cfg["training"].get("pin_memory", True)),
     )
 
