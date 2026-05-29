@@ -100,6 +100,15 @@ def plot_class_distribution(
     fig.savefig(output_path, dpi=200)
     plt.close(fig)
 
+    if csv_path is not None:
+        csv_path = ensure_parent(csv_path)
+        with open(csv_path, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["class", "train_pixels", "val_pixels", "train_percent", "val_percent"])
+            for i, name in enumerate(UNIFIED_CLASSES):
+                writer.writerow([name, int(train_counts[i]), int(val_counts[i]), float(train_pct[i]), float(val_pct[i])])
+
+
 def plot_loss_curves(history: Dict[str, List[float]], output_path: str | Path) -> None:
     output_path = ensure_parent(output_path)
     epochs = np.arange(1, len(history["train_loss"]) + 1)
@@ -113,7 +122,6 @@ def plot_loss_curves(history: Dict[str, List[float]], output_path: str | Path) -
     plt.tight_layout()
     plt.savefig(output_path, dpi=200)
     plt.close()
-
 
 def plot_miou_curve(history: Dict[str, List[float]], output_path: str | Path) -> None:
     output_path = ensure_parent(output_path)
