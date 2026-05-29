@@ -1,0 +1,43 @@
+# All paths are relative to the project root. Do not put absolute paths here.
+data:
+  dataset1_root: data/dataset/dataset1
+  dataset2_root: data/dataset/dataset2
+  image_size: [256, 256]
+  val_ratio: 0.10
+  # Keep 0 for exact PNG masks. Increase slightly only if masks contain compression artifacts.
+  color_tolerance: 0
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+model:
+  in_channels: 3
+  base_channels: 32
+  upsampling: bilinear      # bilinear or transpose
+  use_skip: true            # true or false
+  batch_norm: false         # false for Q1-3/4; true for Q1-6
+  loss: cross_entropy       # cross_entropy or focal
+
+training:
+  seed: 42
+  epochs: 30
+  batch_size: 2
+  learning_rate: 0.001
+  num_workers: 0
+  pin_memory: true
+  device: auto
+  focal_gamma: 2.0
+  focal_alpha: null
+
+paths:
+  results_dir: results
+  saved_models_dir: models/saved_models
+  summary_csv: results/segmentation_summary.csv
+
+yolo:
+  model: yolov8n.pt
+  data: coco8.yaml
+  epochs: 50
+  freeze: 10
+  imgsz: 640
+  batch: 16
+  name: coco8_yolov8n_freeze10
