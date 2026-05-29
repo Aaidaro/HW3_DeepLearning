@@ -11,7 +11,7 @@ data:
 
 model:
   in_channels: 3
-  base_channels: 32
+  base_channels: 64
   upsampling: bilinear      # bilinear or transpose
   use_skip: true            # true or false
   batch_norm: false         # false for Q1-3/4; true for Q1-6
@@ -20,7 +20,7 @@ model:
 training:
   seed: 42
   epochs: 30
-  batch_size: 2
+  batch_size: 4
   learning_rate: 0.001
   num_workers: 0
   pin_memory: true

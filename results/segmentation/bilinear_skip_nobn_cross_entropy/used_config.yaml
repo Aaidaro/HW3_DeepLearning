@@ -4,7 +4,7 @@ data:
   image_size:
   - 256
   - 256
-  val_ratio: 0.1
+  val_ratio: 0.2
   color_tolerance: 0
   mean:
   - 0.485

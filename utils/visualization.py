@@ -45,18 +45,21 @@ def plot_class_distribution(
     x = np.arange(len(UNIFIED_CLASSES))
     width = 0.38
 
+    train_pct = train_counts / max(train_counts.sum(), 1) * 100.0
+    val_pct = val_counts / max(val_counts.sum(), 1) * 100.0
+
     fig, ax = plt.subplots(figsize=(12, 5))
 
     train_bars = ax.bar(
         x - width / 2,
-        train_counts,
+        train_pct,
         width,
         label="Train",
     )
 
     val_bars = ax.bar(
         x + width / 2,
-        val_counts,
+        val_pct,
         width,
         label="Validation",
     )
@@ -64,19 +67,18 @@ def plot_class_distribution(
     ax.set_xticks(x)
     ax.set_xticklabels(UNIFIED_CLASSES, rotation=35, ha="right")
 
-    ax.set_ylabel("Pixel count")
+    ax.set_ylabel("Pixel percentage (%)")
     ax.set_title("Class distribution after train/validation split")
 
     # Normal / linear scale
     ax.set_yscale("linear")
-    # Or simply remove this line entirely.
 
     ax.legend()
 
-    # Add numbers on bars
+    # Show percentage on each bar
     ax.bar_label(
         train_bars,
-        labels=[f"{int(v):,}" for v in train_counts],
+        labels=[f"{pct:.2f}%\n({int(cnt):,})" for pct, cnt in zip(train_pct, train_counts)],
         padding=3,
         fontsize=8,
         rotation=90,
@@ -84,15 +86,15 @@ def plot_class_distribution(
 
     ax.bar_label(
         val_bars,
-        labels=[f"{int(v):,}" for v in val_counts],
+        labels=[f"{pct:.2f}%\n({int(cnt):,})" for pct, cnt in zip(val_pct, val_counts)],
         padding=3,
         fontsize=8,
         rotation=90,
     )
 
     # Add space above bars for labels
-    max_count = max(train_counts.max(), val_counts.max())
-    ax.set_ylim(0, max_count * 1.15 if max_count > 0 else 1)
+    max_pct = max(train_pct.max(), val_pct.max())
+    ax.set_ylim(0, max_pct * 1.20 if max_pct > 0 else 1)
 
     fig.tight_layout()
     fig.savefig(output_path, dpi=200)
