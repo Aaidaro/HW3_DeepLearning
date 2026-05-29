@@ -4,7 +4,7 @@ data:
   image_size:
   - 256
   - 256
-  val_ratio: 0.2
+  val_ratio: 0.1
   color_tolerance: 0
   mean:
   - 0.485
@@ -22,7 +22,7 @@ model:
   batch_norm: false
   loss: cross_entropy
 training:
-  seed: 42
+  seed: 78
   epochs: 30
   batch_size: 4
   learning_rate: 0.001

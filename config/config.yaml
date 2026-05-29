@@ -18,7 +18,7 @@ model:
   loss: cross_entropy       # cross_entropy or focal
 
 training:
-  seed: 42
+  seed: 78
   epochs: 30
   batch_size: 4
   learning_rate: 0.001
