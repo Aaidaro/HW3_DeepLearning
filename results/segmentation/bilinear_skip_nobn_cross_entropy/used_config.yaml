@@ -22,7 +22,7 @@ model:
   batch_norm: false
   loss: cross_entropy
 training:
-  seed: 78
+  seed: 13
   epochs: 30
   batch_size: 4
   learning_rate: 0.001

@@ -312,7 +312,7 @@ def build_dataloaders(cfg: dict, project_root: Optional[Path] = None) -> Tuple[D
     train_records, val_records = split_records_by_dataset(
         records,
         val_ratio=float(cfg["data"].get("val_ratio", 0.1)),
-        seed=int(cfg["training"].get("seed", 42)),
+        seed=int(cfg["training"].get("seed", 13)),
     )
 
     common_dataset_kwargs = dict(
