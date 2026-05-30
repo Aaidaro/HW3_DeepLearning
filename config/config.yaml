@@ -21,7 +21,7 @@ training:
   seed: 13
   epochs: 30
   batch_size: 4
-  learning_rate: 0.001
+  learning_rate: 0.0001
   num_workers: 2
   pin_memory: true
   device: auto
